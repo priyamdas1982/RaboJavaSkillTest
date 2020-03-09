@@ -1,30 +1,28 @@
 package com.rabo.javatest;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.HashSet;
 
-public class DateProblem {
+public class DateProblem{
 	/*This method expects 2 inputs, startTime and endTime in the format of HH:mm:ss. It calculates the difference between the those and counts all occurrences of time with only 2 unique digits in it.
 	 * E.g. : if startTime=16:15:00 and endDate=17:00:00; then count is 2, i.e. : 16:16:11 and 16:16:16, with unique occurrences of of 1 and 6*/
-	public int count(String startTime, String endTime) {
+	public int count (String startTime, String endTime)throws DateTimeParseException {
 
 		int iCount = 0;
 		// adding dummy dates to complete datetime format
-		try {
-			LocalDateTime startdateTime = LocalDateTime.parse("2018-05-05T" + startTime);
-			LocalDateTime enddateTime = LocalDateTime.parse("2018-05-05T" + endTime);
-			if (enddateTime.isBefore(startdateTime)) {
-				enddateTime = LocalDateTime.parse("2018-05-06T" + endTime);
-			}
-			LocalDateTime intermediateTime = enddateTime;
+		
+			LocalTime startdateTime = LocalTime.parse(startTime);
+			LocalTime enddateTime = LocalTime.parse(endTime);
+		
+			LocalTime intermediateTime = enddateTime;
 			/* Using HashSet as it stores unique values */
-			HashSet<Integer> hsUniqueSet = null;
-			int h1 = 0;
-			int h2 = 0;
-			int m1 = 0;
-			int m2 = 0;
-			int s1 = 0;
+			HashSet<Integer> hsUniqueSet;
+			int h1;
+			int h2;
+			int m1;
+			int m2;
+			int s1;
 			int s2 = 0;
 			while (intermediateTime.isAfter(startdateTime) || intermediateTime.equals(startdateTime)) {
 
@@ -53,9 +51,6 @@ public class DateProblem {
 
 			return iCount;
 
-		} catch (DateTimeParseException de) {
-			//return -1 in case of time format error
-			return -1;
-		}
+		
 	}
 }
