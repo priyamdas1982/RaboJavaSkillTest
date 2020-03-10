@@ -23,7 +23,7 @@ public class DateProblem{
 			int m1;
 			int m2;
 			int s1;
-			int s2 = 0;
+			int s2;
 			while (intermediateTime.isAfter(startdateTime) || intermediateTime.equals(startdateTime)) {
 
 				hsUniqueSet = new HashSet<Integer>();
